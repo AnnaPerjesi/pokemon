@@ -1,43 +1,43 @@
-import { makeObservable, observable, toJS } from "mobx";
-import { inject, observer, Provider } from "mobx-react";
-import React from "react";
-import withRouter, { WithRouter } from "../../hocs/withRouter";
-import MainStore from "../../stores/MainStore";
-import GameContainer from "./components/GameContainer";
-import GameStore from "./stores/GameStore";
+import { makeObservable, observable, toJS } from 'mobx';
+import { inject, observer, Provider } from 'mobx-react';
+import React from 'react';
+import withRouter, { WithRouter } from '../../hocs/withRouter';
+import MainStore from '../../stores/MainStore';
+import GameContainer from './components/GameContainer';
+import GameStore from './stores/GameStore';
 
 interface IProps extends WithRouter {
-  MainStore?: MainStore;
+	MainStore?: MainStore;
 }
 
 interface IStores {
-  GameStore: GameStore;
+	GameStore: GameStore;
 }
 
 class GamePage extends React.Component<IProps> {
-  public stores: IStores = null;
+	public stores: IStores = null;
 
-  constructor(props: IProps) {
-    super(props);
+	constructor(props: IProps) {
+		super(props);
 
-    this.stores = {
-      GameStore: new GameStore(this.props.MainStore),
-    };
-  }
+		this.stores = {
+			GameStore: new GameStore(this.props.MainStore)
+		};
+	}
 
-  componentDidMount() {
-    this.stores.GameStore.startGame();
-  }
+	componentDidMount() {
+		this.stores.GameStore.startGame();
+	}
 
-  render() {
-    const { GameStore } = this.stores;
+	render() {
+		const { GameStore } = this.stores;
 
-    return (
-      <Provider {...this.stores}>
-        <GameContainer />
-      </Provider>
-    );
-  }
+		return (
+			<Provider {...this.stores}>
+				<GameContainer />
+			</Provider>
+		);
+	}
 }
 
-export default inject("MainStore")(observer(withRouter(GamePage)));
+export default inject('MainStore')(observer(withRouter(GamePage)));

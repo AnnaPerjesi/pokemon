@@ -1,27 +1,26 @@
 .homePage {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: url("../../../public/assets/PNG/background-start.png") center;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: url('../../../public/assets/PNG/background-start.png') center;
 }
 
 .titleImg {
-  margin-bottom: 30px;
-  width: 320px;
-  height: 122px;
-  z-index: 10;
-  background: url("../../../public/assets/PNG/pokemon-title.png") center
-    no-repeat;
+	margin-bottom: 30px;
+	width: 320px;
+	height: 122px;
+	z-index: 10;
+	background: url('../../../public/assets/PNG/pokemon-title.png') center no-repeat;
 }
 
 .buttonContainer {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .buttonContainer .button {
-  margin: 0px 12px;
+	margin: 0px 12px;
 }

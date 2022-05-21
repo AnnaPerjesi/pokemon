@@ -32,6 +32,10 @@ class GameStore {
 
   currentTries: number = 0;
 
+  bestScore: number = null;
+
+  isLoading: boolean = false;
+
   constructor(mainStore: MainStore) {
     this.MainStore = mainStore;
 
@@ -40,15 +44,38 @@ class GameStore {
       selectedCardIndexes: observable,
       cards: observable,
       currentTries: observable,
+      bestScore: observable,
+      isLoading: observable,
       startGame: action,
       onClickCard: action,
+      setBestScore: action,
+      reStart: action,
+      resetGame: action,
       getAllUsedTypes: computed,
       getUnUsedType: computed,
       getCards: computed,
+      checkIsEnd: computed,
     });
   }
 
   startGame() {
+    this.isLoading = true;
+
+    this.resetGame();
+    this.bestScore = 0;
+
+    this.isLoading = false;
+  }
+
+  reStart() {
+    this.isLoading = true;
+
+    this.resetGame();
+
+    this.isLoading = false;
+  }
+
+  resetGame() {
     this.currentTries = 0;
     this.cards = [];
     this.selectedCardIndexes = [];
@@ -63,6 +90,18 @@ class GameStore {
     }
 
     this.cards = shuffleArray([...this.cards, ...this.cards]);
+  }
+
+  /**
+   * Játék végén chekkolni hogy mennyi lépésből lett kész
+   * Ha kisebb mint az eddigi akkor deállítjuk újnak, amúgy marad változatlan
+   */
+  setBestScore() {
+    if (!this.bestScore) {
+      this.bestScore = this.currentTries;
+    } else if (this.currentTries < this.bestScore) {
+      this.bestScore = this.currentTries;
+    }
   }
 
   /**
@@ -103,6 +142,10 @@ class GameStore {
           this.selectedCardIndexes = [];
         }, 1.5 * 1000);
       }
+
+      if (this.checkIsEnd) {
+        this.setBestScore();
+      }
     }
   }
 
@@ -134,6 +177,10 @@ class GameStore {
     } while (this.getAllUsedTypes.indexOf(rand) > -1);
 
     return rand;
+  }
+
+  get checkIsEnd() {
+    return this.solvedCardIndexes.length === this.getCards.length;
   }
 }
 

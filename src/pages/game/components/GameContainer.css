@@ -12,11 +12,18 @@
 }
 
 .headerContent {
-  width: 80%;
+  width: 90%;
+  max-width: 1024px;
   margin: auto;
   display: flex;
   justify-content: center;
   /* background-color: red; */
+}
+
+.content {
+  width: 90%;
+  max-width: 1024px;
+  margin: 12px auto;
 }
 
 .header .button {
@@ -39,22 +46,29 @@
   font-size: 36px;
 }
 
-.content {
-  width: 80%;
-  margin: 12px auto;
-}
-
 .game {
   display: grid;
   column-gap: auto;
   justify-content: space-between;
   margin: 24px 0px;
-  grid-template-columns: repeat(auto-fill, 150px);
+  row-gap: 12px;
+  grid-template-columns: repeat(5, 180px);
+}
+
+@media screen and (max-width: 1100px) {
+  .game {
+    grid-template-columns: repeat(4, 180px);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .game {
+    grid-template-columns: repeat(3, 180px);
+  }
 }
 
 .card img {
-  width: 150px;
-  height: 150px;
-  margin: 6px 0px;
+  width: 180px;
+  height: 180px;
   cursor: pointer;
 }

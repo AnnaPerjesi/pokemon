@@ -12,6 +12,7 @@ interface IProps {
 class Game extends React.Component<IProps> {
   render() {
     const { GameStore } = this.props;
+    if (GameStore.isLoading) return <div className="game"> Loading...</div>;
 
     return (
       <div className="game">

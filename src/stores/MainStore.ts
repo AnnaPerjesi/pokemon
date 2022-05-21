@@ -1,9 +1,9 @@
 import { action, makeObservable, observable } from "mobx";
 
-export const DECKSIZES = [8, 14, 20];
+export const DECKSIZES = [10, 14, 20];
 
 class MainStore {
-  deckSize: number = 8;
+  deckSize: number = DECKSIZES[0];
 
   constructor() {
     makeObservable(this, {

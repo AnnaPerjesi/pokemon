@@ -16,6 +16,7 @@ interface IProps extends WithRouter {
 
 class GameContainer extends React.Component<IProps> {
   private onClickStartGame = () => this.props.GameStore.startGame();
+  private onClickRestartGame = () => this.props.GameStore.reStart();
   private goHome = () => this.props.navigate("/");
 
   render() {
@@ -43,10 +44,10 @@ class GameContainer extends React.Component<IProps> {
               <span className="number">{GameStore.currentTries}</span>
             </div>
             <div>
-              Best: <span className="number">9</span>
+              Best: <span className="number">{GameStore.bestScore || "-"}</span>
             </div>
             <div>
-              <Button onClick={() => {}}>Restart</Button>
+              <Button onClick={this.onClickRestartGame}>Restart</Button>
             </div>
           </div>
           <Game />

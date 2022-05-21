@@ -5,7 +5,11 @@ interface IProps {}
 
 class GamePage extends React.Component<IProps> {
   render() {
-    return <div className="gamePage">Game</div>;
+    return (
+      <div className="gamePage">
+        <div className="header"></div>
+      </div>
+    );
   }
 }
 

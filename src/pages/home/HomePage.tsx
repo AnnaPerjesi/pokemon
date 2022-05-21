@@ -1,19 +1,22 @@
 import React from "react";
 import Button from "../../components/button/Button";
 import DeckSize from "../../components/deckSize/DeckSize";
+import withRouter, { WithRouter } from "../../hocs/withRouter";
 import "./HomePage.css";
 
-interface IProps {}
+interface IProps extends WithRouter {}
 
 class HomePage extends React.Component<IProps> {
+  private startGame = () => this.props.navigate("/game");
+
   render() {
     return (
       <div className="homePage">
         <div>
           <div className="titleImg"></div>
           <div className="buttonContainer">
-            <DeckSize onClick={() => {}}>Deck size</DeckSize>
-            <Button onClick={() => {}}>Start new game</Button>
+            <DeckSize onClick={() => {}} />
+            <Button onClick={this.startGame}>Start new game</Button>
           </div>
         </div>
       </div>
@@ -21,4 +24,4 @@ class HomePage extends React.Component<IProps> {
   }
 }
 
-export default HomePage;
+export default withRouter(HomePage);

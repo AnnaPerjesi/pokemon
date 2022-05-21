@@ -1,3 +1,59 @@
 .gamePage {
-    width: 100%;
+  width: 100%;
+  height: 100%;
+  background: url("../../../public/assets/PNG/background-game.png") center
+    no-repeat;
+  background-size: cover;
+}
+
+.header {
+  padding: 12px;
+  background-color: #27415c;
+}
+
+.headerContent {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  /* background-color: red; */
+}
+
+.header .button {
+  margin: 0px 12px;
+}
+
+.homeButton {
+  margin-right: 24px;
+}
+
+.statusBar {
+  color: #fdd723;
+  font-size: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.number {
+  font-size: 36px;
+}
+
+.content {
+  width: 80%;
+  margin: 12px auto;
+}
+
+.game {
+  display: grid;
+  column-gap: auto;
+  justify-content: space-between;
+  margin: 24px 0px;
+  grid-template-columns: repeat(auto-fill, 150px);
+}
+
+.card img {
+  width: 150px;
+  height: 150px;
+  margin: 6px 0px;
 }

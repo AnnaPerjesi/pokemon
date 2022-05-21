@@ -17,10 +17,17 @@ class Game extends React.Component<IProps> {
     return (
       <div className="game">
         {GameStore.getCards.map((card, idx) => {
+          const cardClasses = `card ${
+            GameStore.selectedCardIndexes.some(
+              (selectedIdx) => selectedIdx === idx
+            ) && GameStore.selectedCardIndexes.length === 2
+              ? "shake"
+              : ""
+          }`;
           return (
             <div
               key={`${card.type}` + `${idx}`}
-              className="card"
+              className={cardClasses}
               onClick={() => {
                 GameStore.onClickCard(idx);
               }}

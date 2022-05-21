@@ -51,6 +51,8 @@ class GameStore {
   startGame() {
     this.currentTries = 0;
     this.cards = [];
+    this.selectedCardIndexes = [];
+    this.solvedCardIndexes = [];
 
     for (let i = 0; i < this.MainStore.deckSize / 2; i++) {
       const newCard: ICard = {
@@ -68,7 +70,7 @@ class GameStore {
    * ha csak 1 van benne is push (+ növelni a currentTrie)
    *    chek ugyanolyan a type ?
    *        ha igen: push mind2 a solvedba
-   *        ha nem, wait 3sec és üríteni a selected-et
+   *        ha nem, wait  X sec és üríteni a selected-et
    * ha 2 akkor ne cisnálj semmit
    *
    *
@@ -76,7 +78,32 @@ class GameStore {
    */
 
   onClickCard(cardIndex: number) {
-    // if(this.)
+    const selectedCards = this.selectedCardIndexes.length;
+
+    if (selectedCards === 0) {
+      this.selectedCardIndexes.push(cardIndex);
+    } else if (selectedCards === 1) {
+      this.currentTries = this.currentTries + 1;
+
+      this.selectedCardIndexes.push(cardIndex);
+
+      const firstIndex = this.selectedCardIndexes[0];
+      const secondIndex = this.selectedCardIndexes[1];
+
+      if (this.getCards[firstIndex].type === this.getCards[secondIndex].type) {
+        this.solvedCardIndexes = [
+          ...this.solvedCardIndexes,
+          firstIndex,
+          secondIndex,
+        ];
+
+        this.selectedCardIndexes = [];
+      } else {
+        setTimeout(() => {
+          this.selectedCardIndexes = [];
+        }, 1.5 * 1000);
+      }
+    }
   }
 
   get getCards() {

@@ -15,7 +15,7 @@ class HomePage extends React.Component<IProps> {
         <div>
           <div className="titleImg"></div>
           <div className="buttonContainer">
-            <DeckSize onClick={() => {}} />
+            <DeckSize />
             <Button onClick={this.startGame}>Start new game</Button>
           </div>
         </div>
